@@ -64,9 +64,9 @@ Aside
 
 ```{r}
 if(params$pdf_mode){
-  cat("View this CV online with links at _D:/CV_")
+  cat("View and download this CV with links at https://github.com/JaneChik/cv or [here](https://drive.google.com/drive/folders/11J6q1Qji4Ab4Z6LnwtBZl5XUZ-p3zPMS?usp=sharing)")
 } else {
-  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](D:/CV)")
+  cat("<i class='fas fa-download'></i> Download a PDF of this CV [here](https://github.com/JaneChik/cv) or [here](https://drive.google.com/drive/folders/11J6q1Qji4Ab4Z6LnwtBZl5XUZ-p3zPMS?usp=sharing)")
 }
 ```
 
