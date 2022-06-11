@@ -138,13 +138,27 @@ CV %<>% print_section('research_projects')
 ```
 
 
-
-Achievements {data-icon=chalkboard-teacher}
+Other Projects {data-icon=handshake}
 --------------------------------------------------------------------------------
 
+```{r}
+CV %<>% print_section('other_projects')
+```
+
+
+Achievements {data-icon=award}
+--------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('achievements')
+```
+
+
+Teaching experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('teaching')
 ```
 
 
