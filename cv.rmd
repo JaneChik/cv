@@ -138,12 +138,32 @@ CV %<>% print_section('research_projects')
 ```
 
 
+
 Other Projects {data-icon=handshake}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('other_projects')
 ```
+
+
+
+Conferences {data-icon=comment-dots data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('conferences')
+```
+
+
+
+Publications {data-icon=book data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('publications')
+```
+
 
 
 Achievements {data-icon=award}
@@ -154,6 +174,7 @@ CV %<>% print_section('achievements')
 ```
 
 
+
 Teaching experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
@@ -162,9 +183,9 @@ CV %<>% print_section('teaching')
 ```
 
 
+
 Courses {data-icon=user-graduate}
 --------------------------------------------------------------------------------
-
 
 ```{r}
 CV %<>% print_section('courses')
