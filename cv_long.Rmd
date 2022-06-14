@@ -1,0 +1,211 @@
+---
+title: "Evgeniia Chikina's CV"
+author: Evgeniia Chikina
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    self_contained: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+source("cv_printing_functions.r")
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1flNhCgpHqQze6IjGkt9S8eMzBJz6zA9NqgLFDmE_ug4/edit?usp=sharing",  
+  pdf_mode = params$pdf_mode
+)
+
+```
+
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -7px;
+}
+</style>")
+}
+```
+
+
+<!-- taken from https://github.com/nstrayer/cv/issues/24 -->
+```{css, echo = FALSE}
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 0.01rem;
+  --sidebar-background-color: var(--timberwolf);
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.2in;
+}
+```
+
+
+Aside
+================================================================================
+
+General Information {#general}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_general_info()
+```
+
+
+
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_contact_info()
+```
+
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_skill_bars()
+```
+
+
+
+Languages {#languages}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_lang_bars()
+```
+
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+```{r}
+if(params$pdf_mode){
+  cat("View and download the latest version of this CV with links at https://github.com/JaneChik/cv or [here](https://drive.google.com/drive/folders/11J6q1Qji4Ab4Z6LnwtBZl5XUZ-p3zPMS?usp=sharing)")
+} else {
+  cat("<i class='fas fa-download'></i> Download a PDF of this CV [here](https://github.com/JaneChik/cv) or [here](https://drive.google.com/drive/folders/11J6q1Qji4Ab4Z6LnwtBZl5XUZ-p3zPMS?usp=sharing)")
+}
+```
+
+
+Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
+
+The source code is available [on github.com/nstrayer/cv](https://github.com/nstrayer/datadrivencv).
+Modified source code for this CV is available [here](https://github.com/JaneChik/cv)
+
+Last updated on `r Sys.Date()`.
+
+
+
+
+Main
+================================================================================
+
+Evgeniia Chikina {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('education')
+```
+
+Basic Education {data-icon=chalkboard}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('education_base')
+```
+
+
+Research Projects {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('research_projects')
+```
+
+
+
+Other Projects {data-icon=handshake}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('other_projects')
+```
+
+
+
+Conferences {data-icon=comment-dots data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('conferences')
+```
+
+
+
+Publications {data-icon=book data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('publications')
+```
+
+
+
+Achievements {data-icon=award}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('achievements')
+```
+
+
+
+Teaching experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('teaching')
+```
+
+
+
+Courses {data-icon=user-graduate}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('courses')
+```
+
+
+```{r}
+CV %<>% print_links()
+```
+

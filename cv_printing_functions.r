@@ -45,12 +45,14 @@ create_CV_object <-  function(data_location,
     cv$lang        <- read_gsheet(sheet_id = "languages")
     cv$text_blocks   <- read_gsheet(sheet_id = "text_blocks")
     cv$contact_info  <- read_gsheet(sheet_id = "contact_info")
+    cv$general  <- read_gsheet(sheet_id = "general")
   } else {
     # Want to go old-school with csvs?
     cv$entries_data <- readr::read_csv(paste0(data_location, "entries.csv"), skip = 1)
     cv$skills       <- readr::read_csv(paste0(data_location, "language_skills.csv"), skip = 1)
     cv$text_blocks  <- readr::read_csv(paste0(data_location, "text_blocks.csv"), skip = 1)
     cv$contact_info <- readr::read_csv(paste0(data_location, "contact_info.csv"), skip = 1)
+    cv$general <- readr::read_csv(paste0(data_location, "general.csv"), skip = 1)
   }
 
 
@@ -270,4 +272,13 @@ print_contact_info <- function(cv){
   ) %>% print()
 
   invisible(cv)
+}
+
+
+
+print_general_info <- function(cv) {
+  glue::glue_data(
+    cv$general,
+    "**{name}:** {info} <br>"
+  )
 }
