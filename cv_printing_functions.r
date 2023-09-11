@@ -16,6 +16,7 @@
 #' @return A new `CV_Printer` object.
 create_CV_object <-  function(data_location,
                               pdf_mode = FALSE,
+                              resume = FALSE,
                               sheet_is_publicly_readable = TRUE) {
 
   cv <- list(
@@ -41,6 +42,9 @@ create_CV_object <-  function(data_location,
       googlesheets4::read_sheet(data_location, sheet = sheet_id, skip = 1, col_types = "c")
     }
     cv$entries_data  <- read_gsheet(sheet_id = "entries")
+    if (resume) {
+      cv$entries_data <- dplyr::filter(cv$entries_data, in_resume == TRUE)
+    }
     cv$skills        <- read_gsheet(sheet_id = "programming_skills")
     cv$lang        <- read_gsheet(sheet_id = "languages")
     cv$text_blocks   <- read_gsheet(sheet_id = "text_blocks")
